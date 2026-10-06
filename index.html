@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080d17">
+  <meta name="description" content="Presentación educativa de Metasploit: conceptos, arquitectura, caso de uso, laboratorio, historia y defensa.">
+  <title>Metasploit | Del riesgo a la evidencia</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="presentation.js" defer></script>
+</head>
+<body>
+  <svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="metasploit-mark" viewBox="0 0 300 400">
+        <path fill="#137bb2" d="M150 0C93 0 38 10 0 30v215c0 55 72 109 150 155 78-46 150-100 150-155V30C262 10 207 0 150 0Z"/>
+        <path fill="#29638b" d="M150 0c57 0 112 10 150 30v215c0 55-72 109-150 155Z"/>
+        <path fill="#fff" d="M30 51h47l73 67 73-67h47v159c0 39-20 65-50 90V123l-41 43v75h-58v-75l-41-43v177c-30-25-50-51-50-90Z"/>
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+      <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol>
+      <symbol id="icon-full" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></symbol>
+      <symbol id="icon-notes" viewBox="0 0 24 24"><path d="M7 4h10a2 2 0 0 1 2 2v14H5V6a2 2 0 0 1 2-2Zm1 5h8m-8 4h8m-8 4h4"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Zm-4 9 3 3 5-6"/></symbol>
+      <symbol id="icon-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3m6 0h4"/></symbol>
+      <symbol id="icon-network" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="2" y="16" width="6" height="5" rx="1"/><rect x="16" y="16" width="6" height="5" rx="1"/><path d="M12 8v4H5v4m7-4h7v4"/></symbol>
+      <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="topbar">
+    <a class="brand" href="#1" aria-label="Ir al inicio"><svg aria-hidden="true"><use href="#metasploit-mark"/></svg><span>METASPLOIT<span class="brand-sub">FRAMEWORK / SECURITY LAB</span></span></a>
+    <nav class="chapters" aria-label="Bloques de la presentación">
+      <button data-go="0">01 <span>Introducción</span></button>
+      <button data-go="2">02 <span>Conceptos</span></button>
+      <button data-go="6">03 <span>Caso de uso</span></button>
+      <button data-go="7">04 <span>Demo</span></button>
+      <button data-go="8">05 <span>Historia</span></button>
+      <button data-go="9">06 <span>Defensa</span></button>
+    </nav>
+    <span class="lab-label"><i></i> ADMINISTRACIÓN DE RECURSOS 2026</span>
+  </header>
+
+  <main id="deck" aria-label="Presentación de Metasploit">
+    <section class="slide hero active" data-title="Metasploit Framework" data-chapter="0" aria-labelledby="title-1">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="slide-inner hero-layout">
+        <div>
+          <p class="eyebrow reveal">01 / PRESENTACIÓN</p>
+          <h1 id="title-1" class="reveal">Metasploit<span>Framework<span class="title-dot">.</span></span></h1>
+          <p class="hero-description reveal">Del riesgo a la <strong>evidencia.</strong><br>De la evidencia a una mejor defensa.</p>
+          <div class="hero-tags reveal"><span>OPEN SOURCE</span><span>PENTESTING</span><span>HACKING ÉTICO</span></div>
+          <div class="hero-footer reveal"><span class="small-rule"></span><p>Una herramienta ofensiva.<br><strong>Un propósito defensivo.</strong></p></div>
+        </div>
+        <div class="hero-art reveal" aria-label="Escudo de Metasploit">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+          <div class="shield-stage"><svg class="hero-shield" aria-hidden="true"><use href="#metasploit-mark"/></svg></div>
+          <span class="orbit-tag tag-bottom"><code>msf6 &gt;</code><span class="cursor"></span></span>
+          <span class="coordinate">35° / SECURITY RESEARCH</span>
+        </div>
+      </div>
+      <aside class="speaker-note">Presentar al equipo y la materia. Abrir con una idea: detectar una falla no es lo mismo que demostrar su impacto. Todo el ejercicio se realiza sobre máquinas propias y aisladas, con autorización. El recorrido es: qué es, usos y conceptos, caso de uso, demo, historia y defensa. Duración sugerida: 30 segundos.</aside>
+    </section>
+
+    <section class="slide light" data-title="¿Qué es Metasploit?" data-chapter="0" aria-labelledby="title-2">
+      <div class="slide-inner split">
+        <div>
+          <p class="eyebrow reveal">01 / QUÉ ES</p>
+          <h2 id="title-2" class="reveal">Es un <em>framework.</em></h2>
+          <p class="lead reveal">Una plataforma abierta para validar vulnerabilidades y demostrar su impacto de forma controlada.</p>
+          <div class="definition-tags reveal"><span>Ruby</span><span>Rapid7 + comunidad</span><span>Extensible</span></div>
+        </div>
+        <div class="evidence-stack">
+          <div class="evidence-card reveal"><span class="mono-label">01 / HIPÓTESIS</span><h3>“Podría ser vulnerable”</h3><p>La versión del servicio sugiere una falla.</p></div>
+          <div class="evidence-connector reveal"><svg class="icon"><use href="#icon-arrow"/></svg><span>PRUEBA AUTORIZADA</span></div>
+          <div class="evidence-card blue-card reveal"><span class="mono-label">02 / EVIDENCIA</span><h3>“Este es el impacto”</h3><p>Una prueba reproducible confirma el riesgo.</p></div>
+          <p class="caption reveal">La vulnerabilidad ya existe. Metasploit no la crea.</p>
+        </div>
+      </div>
+      <aside class="speaker-note">Rapid7 lo define como una plataforma open source para pruebas de penetración y desarrollo. La consola reúne módulos y una forma estándar de configurarlos. No es un botón para hackear cualquier equipo: hace falta entender el servicio, la vulnerabilidad, el alcance y las condiciones de la prueba. No confundir Metasploit Framework con los productos comerciales relacionados. Duración: 1 minuto.</aside>
+    </section>
+
+    <section class="slide dark" data-title="¿Para qué se utiliza?" data-chapter="1" aria-labelledby="title-3">
+      <div class="slide-inner">
+        <div class="section-heading reveal"><div><p class="eyebrow">02 / UTILIDAD</p><h2 id="title-3">Probar para <em>proteger.</em></h2></div><p>Del hallazgo técnico<br>a una decisión de seguridad.</p></div>
+        <div class="use-grid">
+          <article class="use-card reveal"><svg class="icon"><use href="#icon-target"/></svg><span class="mono-label">01</span><h3>Pentesting</h3><p>Validar fallas e impacto dentro de un alcance autorizado.</p></article>
+          <article class="use-card reveal"><svg class="icon"><use href="#icon-shield"/></svg><span class="mono-label">02</span><h3>Validar parches</h3><p>Repetir una prueba y comprobar que la corrección funciona.</p></article>
+          <article class="use-card reveal"><svg class="icon"><use href="#icon-network"/></svg><span class="mono-label">03</span><h3>Purple Team</h3><p>Evaluar detección y respuesta junto al equipo defensivo.</p></article>
+          <article class="use-card reveal"><svg class="icon"><use href="#icon-terminal"/></svg><span class="mono-label">04</span><h3>Aprender e investigar</h3><p>Reproducir vulnerabilidades y desarrollar módulos.</p></article>
+        </div>
+        <div class="bottom-statement reveal"><span>IMPORTANTE</span><p>No reemplaza una auditoría ni garantiza un resultado. <strong>Complementa el análisis.</strong></p></div>
+      </div>
+      <aside class="speaker-note">Un escáner puede sugerir una vulnerabilidad; Metasploit permite validar algunas de ellas. También tiene módulos de escaneo y enumeración, por eso no conviene decir que nunca descubre información. Se complementa con herramientas como Nmap y los escáneres de vulnerabilidades. En Purple Team, lo importante es si las defensas registran y detectan la acción autorizada. Duración: 1 minuto.</aside>
+    </section>
+
+    <section class="slide dark" data-title="Arquitectura del framework" data-chapter="1" aria-labelledby="title-4">
+      <div class="slide-inner split architecture-layout">
+        <div><p class="eyebrow reveal">02 / ARQUITECTURA</p><h2 id="title-4" class="reveal">Una consola.<br>Muchos <em>módulos.</em></h2><p class="lead reveal">Un entorno modular que conecta interfaces, librerías y herramientas.</p><div class="code-chip reveal"><code>msfconsole</code><span>El punto de entrada de nuestra demo</span></div></div>
+        <div class="architecture">
+          <div class="arch-layer reveal"><span>01</span><div><h3>Interfaces</h3><p><code>msfconsole · msfvenom · RPC</code></p></div><b>ENTRADA</b></div>
+          <div class="arch-layer reveal"><span>02</span><div><h3>Core y librerías</h3><p>Framework en Ruby · Rex</p></div><b>MOTOR</b></div>
+          <div class="arch-layer accent-layer reveal"><span>03</span><div><h3>Módulos</h3><p>Auxiliary · Exploit · Payload · Post…</p></div><b>ACCIÓN</b></div>
+          <div class="arch-layer reveal"><span>04</span><div><h3>PostgreSQL</h3><p>Hosts, servicios y resultados</p></div><b>REGISTRO</b></div>
+          <p class="caption reveal">La base de datos es opcional; organiza el trabajo.</p>
+        </div>
+      </div>
+      <aside class="speaker-note">Las interfaces permiten interactuar con el framework. msfconsole es la consola, msfvenom es una utilidad relacionada con payloads y RPC permite automatización. Las librerías y el core sostienen las funciones comunes; los módulos contienen lógica específica. PostgreSQL almacena información de la auditoría, pero no es un requisito para cada prueba. Analogía: consola = volante, motor = core, herramientas = módulos, libreta = base de datos. Duración: 1:30.</aside>
+    </section>
+
+    <section class="slide light" data-title="Exploit, payload y módulos" data-chapter="1" aria-labelledby="title-5">
+      <div class="slide-inner">
+        <p class="eyebrow reveal">02 / CONCEPTOS CLAVE</p><h2 id="title-5" class="reveal">La falla. La entrada. <em>La acción.</em></h2>
+        <div class="concept-chain">
+          <article class="concept reveal"><span class="concept-number">01</span><h3>Vulnerabilidad</h3><p>La debilidad que ya existe.</p><code>El problema</code></article>
+          <span class="chain-arrow reveal" aria-hidden="true">→</span>
+          <article class="concept reveal"><span class="concept-number">02</span><h3>Exploit</h3><p>El código que aprovecha la falla.</p><code>El mecanismo</code></article>
+          <span class="chain-arrow reveal" aria-hidden="true">→</span>
+          <article class="concept blue-card reveal"><span class="concept-number">03</span><h3>Payload</h3><p>La acción tras la explotación.</p><code>El resultado buscado</code></article>
+        </div>
+        <div class="module-strip reveal"><div><b>Auxiliary</b><span>Reconocer / verificar</span></div><div><b>Post</b><span>Analizar el acceso</span></div><div><b>Encoder</b><span>Adaptar representación</span></div><div><b>NOP</b><span>Exploits de memoria</span></div><div><b>Evasion</b><span>Evaluar detección</span></div></div>
+        <p class="caption reveal">Un módulo es una pieza del framework. Un encoder no garantiza evadir un antivirus.</p>
+      </div>
+      <aside class="speaker-note">Exploit y payload no son lo mismo. El exploit usa la vulnerabilidad; el payload define qué se ejecuta después. Meterpreter es una opción de sesión interactiva, no el resultado de todos los exploits. Auxiliary recopila información o comprueba fallas, Post analiza el acceso. Encoder adapta el payload a restricciones técnicas. NOP es especializado en ciertos exploits de memoria. Evasion permite evaluar defensas en un contexto autorizado. Algunas vulnerabilidades ya ofrecen una shell: no todos los módulos inyectan un payload nuevo. Duración: 2 minutos.</aside>
+    </section>
+
+    <section class="slide blue" data-title="El ciclo de una prueba" data-chapter="1" aria-labelledby="title-6">
+      <div class="slide-inner">
+        <p class="eyebrow reveal">02 / METODOLOGÍA</p><h2 id="title-6" class="reveal">Conseguir acceso<br>no es <span class="outline-text">el final.</span></h2>
+        <div class="workflow">
+          <article class="reveal"><span>01 / OBSERVAR</span><h3>Reconocer</h3><p>Servicios y versiones</p></article>
+          <article class="reveal"><span>02 / COMPROBAR</span><h3>Validar</h3><p>Falla y módulo compatible</p></article>
+          <article class="reveal"><span>03 / DEMOSTRAR</span><h3>Medir impacto</h3><p>Sesión y permisos obtenidos</p></article>
+          <article class="reveal"><span>04 / CORREGIR</span><h3>Mitigar</h3><p>Corregir y volver a probar</p></article>
+        </div>
+        <div class="cycle-footer reveal"><svg class="icon"><use href="#icon-shield"/></svg><p>Autorización, alcance y evidencia <strong>en todas las etapas.</strong></p><span class="return-label">↺ REVALIDAR</span></div>
+      </div>
+      <aside class="speaker-note">Este es un esquema simplificado, no una metodología completa de pentesting. Antes de cualquier acción se acuerdan alcance, permisos y límites. Primero se identifican servicios, luego se valida la falla, se mide el impacto y se documenta la mitigación. Acceso como usuario limitado y acceso como administrador tienen riesgos distintos. La prueba se cierra cuando corregimos y volvemos a verificar, no cuando aparece una shell. Duración: 1 minuto.</aside>
+    </section>
+
+    <section class="slide dark" data-title="Caso de uso: EternalBlue" data-chapter="2" aria-labelledby="title-7">
+      <div class="slide-inner">
+        <div class="section-heading reveal"><div><p class="eyebrow">03 / CASO DE USO REAL</p><h2 id="title-7">EternalBlue.<br><em>Una lección de 2017.</em></h2></div><div class="cve-badge"><span>BOLETÍN DE SEGURIDAD</span><code>MS17-010</code><small>SMBv1 · Windows · ejecución remota</small></div></div>
+        <div class="case-timeline">
+          <article class="reveal"><span class="timeline-point"></span><span class="mono-label">14 MARZO / 2017</span><h3>El parche ya existía.</h3><p>Microsoft publica MS17-010 para corregir fallas en SMB.</p></article>
+          <article class="reveal"><span class="timeline-point"></span><span class="mono-label">12 MAYO / 2017</span><h3>WannaCry se propaga.</h3><p>El ransomware aprovecha equipos que seguían sin actualizar.</p></article>
+          <article class="reveal"><span class="timeline-point"></span><span class="mono-label">USO DEFENSIVO</span><h3>Validar y corregir.</h3><p>Metasploit ayuda a comprobar exposición en sistemas autorizados.</p></article>
+        </div>
+        <div class="bottom-statement reveal"><span>LA LECCIÓN</span><p>Un parche disponible no protege un sistema <strong>si no se instala.</strong></p></div>
+      </div>
+      <aside class="speaker-note">MS17-010 es un boletín que corrige varias vulnerabilidades, no el nombre de una única CVE. EternalBlue se asocia especialmente con CVE-2017-0144. WannaCry usó esta técnica para propagarse mediante SMB entre equipos vulnerables. No fue causado por Metasploit ni necesitó Metasploit para propagarse. El framework tiene módulos de detección y explotación relacionados que permiten validar el riesgo en un entorno autorizado. La demo que sigue utiliza otra vulnerabilidad, vsftpd, por ser más simple para el laboratorio. Duración: 2 minutos.</aside>
+    </section>
+
+    <section class="slide dark" data-title="Demo: laboratorio aislado" data-chapter="3" aria-labelledby="title-8">
+      <div class="slide-inner">
+        <div class="section-heading reveal"><div><p class="eyebrow">04 / DEMO · EL ENTORNO</p><h2 id="title-8">Dos máquinas.<br><em>Cero objetivos externos.</em></h2></div></div>
+        <div class="network-lab reveal">
+          <div class="machine"><svg class="icon"><use href="#icon-terminal"/></svg><span class="mono-label">EQUIPO DE PRUEBA</span><h3>Kali Linux</h3><code>192.168.56.10</code><span>Metasploit / msfconsole</span></div>
+          <div class="network-link"><span>RED VIRTUAL INTERNA</span><div class="packet-track"><i></i><i></i><i></i></div><code>192.168.56.0/24</code><span class="no-internet">SIN SALIDA A INTERNET</span></div>
+          <div class="machine target-machine"><svg class="icon"><use href="#icon-target"/></svg><span class="mono-label">OBJETIVO DEL LABORATORIO</span><h3>Metasploitable 2</h3><code>192.168.56.20</code><span>VM deliberadamente vulnerable</span></div>
+        </div>
+        <div class="lab-rules reveal"><span>01 <b>Red interna, no puente</b></span><span>02 <b>Snapshot previo</b></span><span>03 <b>Sin datos reales</b></span></div>
+        <p class="caption reveal">IPs de ejemplo. Las VMs del ejercicio no tienen un adaptador conectado a Internet.</p>
+      </div>
+      <aside class="speaker-note">Mostrar la arquitectura del laboratorio antes de cambiar a la terminal. Se propone red interna entre dos VMs, que no debe confundirse con modo puente. Host-only también puede usarse, pero permite comunicación con el anfitrión y su aislamiento depende de la configuración de rutas. Para esta propuesta no hay adaptadores NAT durante la prueba. Las actualizaciones de Kali se hacen antes. Tener snapshot y no guardar datos reales en Metasploitable. Duración: 1 minuto.</aside>
+    </section>
+
+    <section class="slide light" data-title="Historia y evolución" data-chapter="4" aria-labelledby="title-9">
+      <div class="slide-inner">
+        <div class="section-heading reveal"><div><p class="eyebrow">05 / HISTORIA</p><h2 id="title-9">De un proyecto<br>a un <em>ecosistema.</em></h2></div><svg class="history-mark" aria-hidden="true"><use href="#metasploit-mark"/></svg></div>
+        <div class="history-timeline">
+          <article class="reveal"><b>2003</b><span class="timeline-point"></span><h3>H. D. Moore</h3><p>Nace el proyecto para facilitar el desarrollo y la prueba de exploits.</p></article>
+          <article class="reveal"><b>2007</b><span class="timeline-point"></span><h3>Framework 3</h3><p>La reescritura en Ruby consolida una arquitectura extensible.</p></article>
+          <article class="reveal"><b>2009</b><span class="timeline-point"></span><h3>Rapid7</h3><p>Adquiere el proyecto e impulsa su desarrollo.</p></article>
+          <article class="reveal"><b>Hoy</b><span class="timeline-point"></span><h3>Comunidad abierta</h3><p>Módulos y contribuciones para investigación y auditorías.</p></article>
+        </div>
+        <p class="history-footer reveal"><strong>No es una colección estática de exploits.</strong> Es una plataforma para desarrollar y compartir conocimiento.</p>
+      </div>
+      <aside class="speaker-note">H. D. Moore inició Metasploit en 2003. Las primeras versiones se escribieron en Perl. Metasploit 3, lanzado en 2007, fue reescrito en Ruby. Rapid7 adquirió el proyecto en 2009; el Framework siguió siendo open source. Por eso 2011 no debe presentarse como el inicio del código abierto. La comunidad contribuye módulos, correcciones y documentación. Existen productos comerciales relacionados, pero no son lo mismo que el Framework. Duración: 1:30.</aside>
+    </section>
+
+    <section class="slide dark" data-title="Cómo defenderse" data-chapter="5" aria-labelledby="title-10">
+      <div class="slide-inner">
+        <div class="section-heading reveal"><div><p class="eyebrow">06 / FORMA DE EVITARLO</p><h2 id="title-10">No se bloquea una herramienta.<br><em>Se reduce el riesgo.</em></h2></div><svg class="defense-icon icon" aria-hidden="true"><use href="#icon-shield"/></svg></div>
+        <div class="defense-grid">
+          <article class="reveal"><span>01</span><h3>Parchear y verificar</h3><p>Software confiable, actualizado y con integridad comprobada.</p></article>
+          <article class="reveal"><span>02</span><h3>Reducir exposición</h3><p>Deshabilitar servicios innecesarios y limitar puertos.</p></article>
+          <article class="reveal"><span>03</span><h3>Segmentar</h3><p>Firewall y redes separadas para limitar propagación.</p></article>
+          <article class="reveal"><span>04</span><h3>Mínimo privilegio</h3><p>Limitar permisos y el alcance de un compromiso.</p></article>
+          <article class="reveal"><span>05</span><h3>Detectar y responder</h3><p>Logs, IDS/IPS y EDR; investigar conexiones anómalas.</p></article>
+          <article class="reveal"><span>06</span><h3>Revalidar</h3><p>Gestionar vulnerabilidades y probar las correcciones.</p></article>
+        </div>
+        <p class="caption reveal">vsftpd: reemplazar la distribución comprometida. EternalBlue: aplicar MS17-010 y deshabilitar SMBv1.</p>
+      </div>
+      <aside class="speaker-note">Defensa en capas: ninguna medida sola garantiza seguridad. En vsftpd hay que reemplazar el artefacto comprometido por software actual de una fuente confiable y verificar firmas o hashes publicados por un canal confiable. No basta con afirmar “2.3.5+” como política actual. Si ya hubo una intrusión, investigar y reconstruir según corresponda. En EternalBlue, instalar las actualizaciones y quitar SMBv1; no exponer SMB a Internet. Los puertos y comportamientos anómalos ayudan a detectar, pero bloquear 6200 no erradica la backdoor. Mínimo privilegio reduce daños, no neutraliza un binario malicioso. Duración: 2 minutos.</aside>
+    </section>
+
+    <section class="slide closing" data-title="Cierre y preguntas" data-chapter="5" aria-labelledby="title-11">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="slide-inner closing-layout">
+        <p class="eyebrow reveal">06 / LO QUE NOS LLEVAMOS</p>
+        <h2 id="title-11" class="reveal">Entender el ataque.<br><em>Mejorar la defensa.</em></h2>
+        <div class="takeaways"><div class="reveal"><span>01</span><p>Validar con <strong>evidencia.</strong></p></div><div class="reveal"><span>02</span><p>Probar con <strong>autorización.</strong></p></div><div class="reveal"><span>03</span><p>Corregir y <strong>revalidar.</strong></p></div></div>
+        <div class="closing-bottom reveal"><p>Gracias.<span>¿Preguntas?</span></p><button id="sources-open" class="outline-button">Fuentes y lecturas <span>↗</span></button><svg aria-hidden="true"><use href="#metasploit-mark"/></svg></div>
+      </div>
+      <aside class="speaker-note">Cerrar el ciclo: la herramienta permite transformar una sospecha en evidencia para priorizar una corrección. Su uso responsable exige autorización y alcance definido; también deben respetarse la ley y las reglas institucionales. La demostración no consistió en instalar malware, sino en validar de forma limitada una vulnerabilidad del laboratorio. Invitar a preguntas y abrir las fuentes si quieren profundizar. Duración: 1 minuto.</aside>
+    </section>
+  </main>
+
+  <footer class="bottombar">
+    <div class="slide-position"><span id="current-number">01</span><span class="counter-rule"></span><span class="total">11</span><span id="current-title">Metasploit Framework</span></div>
+    <div class="controls">
+      <button id="overview-open" class="icon-button" title="Ver diapositivas (O)" aria-label="Ver todas las diapositivas"><svg class="icon"><use href="#icon-grid"/></svg></button>
+      <button id="notes-open" class="icon-button" title="Notas del expositor (N)" aria-label="Abrir notas del expositor"><svg class="icon"><use href="#icon-notes"/></svg></button>
+      <button id="fullscreen" class="icon-button" title="Pantalla completa (F)" aria-label="Activar pantalla completa"><svg class="icon"><use href="#icon-full"/></svg></button>
+      <span class="controls-divider"></span>
+      <button id="previous" class="icon-button prev-button" aria-label="Diapositiva anterior" title="Anterior (←)"><svg class="icon"><use href="#icon-arrow"/></svg></button>
+      <button id="next" class="icon-button next-button" aria-label="Diapositiva siguiente" title="Siguiente (→)"><svg class="icon"><use href="#icon-arrow"/></svg></button>
+    </div>
+  </footer>
+  <div class="progress-track" role="progressbar" aria-label="Avance de la presentación" aria-valuemin="1" aria-valuemax="11" aria-valuenow="1"><span id="progress"></span></div>
+  <span id="slide-announcement" class="sr-only" aria-live="polite"></span>
+
+  <dialog id="overview-dialog" class="overview-dialog" aria-labelledby="overview-title"><div class="dialog-heading"><div><p class="eyebrow">EL RECORRIDO</p><h2 id="overview-title">11 diapositivas. 6 bloques.</h2></div><button class="close-dialog" aria-label="Cerrar índice">×</button></div><div id="overview-grid"></div><p class="dialog-hint">← → Navegar · F Pantalla completa · N Notas · O Índice · Esc Cerrar</p><label class="shortcut-setting"><input id="keyboard-shortcuts" type="checkbox" checked> Activar atajos de una letra (F, N, O)</label></dialog>
+  <dialog id="notes-dialog" aria-labelledby="notes-title"><div class="dialog-heading"><div><p class="eyebrow">NOTAS DEL EXPOSITOR</p><h2 id="notes-title"></h2></div><button class="close-dialog" aria-label="Cerrar notas">×</button></div><p id="notes-content"></p><p class="dialog-hint">Estas notas se ven en la pantalla que estás proyectando. Cerrarlas antes de continuar.</p></dialog>
+  <dialog id="sources-dialog" aria-labelledby="sources-title"><div class="dialog-heading"><div><p class="eyebrow">PARA PROFUNDIZAR</p><h2 id="sources-title">Fuentes y lecturas</h2></div><button class="close-dialog" aria-label="Cerrar fuentes">×</button></div><div class="source-links"><a href="https://github.com/rapid7/metasploit-framework" target="_blank" rel="noopener noreferrer"><b>Metasploit Framework</b><span>Código fuente, licencia y contribuciones ↗</span></a><a href="https://docs.metasploit.com/" target="_blank" rel="noopener noreferrer"><b>Documentación oficial</b><span>Uso del framework y desarrollo de módulos ↗</span></a><a href="https://www.rapid7.com/db/modules/exploit/unix/ftp/vsftpd_234_backdoor/" target="_blank" rel="noopener noreferrer"><b>vsftpd 2.3.4 Backdoor</b><span>Referencia del módulo · CVE-2011-2523 ↗</span></a><a href="https://learn.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010" target="_blank" rel="noopener noreferrer"><b>Microsoft MS17-010</b><span>Boletín de seguridad · marzo de 2017 ↗</span></a><a href="https://docs.rapid7.com/metasploit/metasploitable-2/" target="_blank" rel="noopener noreferrer"><b>Metasploitable 2</b><span>Objetivo vulnerable para laboratorios ↗</span></a></div><p class="dialog-hint">Las diapositivas funcionan offline. Estos enlaces requieren Internet.</p></dialog>
+  <div id="toast" role="status"></div>
+  <noscript><div class="noscript-warning">JavaScript está desactivado. Podés leer todas las diapositivas desplazándote por la página, sin animaciones.</div></noscript>
+</body>
+</html>
